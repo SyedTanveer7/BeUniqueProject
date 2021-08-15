@@ -9,7 +9,9 @@ public class ProfileData {
     private String profile_picture;
     private long age;
     private String bio;
+    private LocationData location;
     private List<BasicInfoData> basic_info;
+    private List<SliderPhotoData> media;
     private List<SliderPhotoData> photos;
 
     public String getName() {
@@ -58,6 +60,22 @@ public class ProfileData {
 
     public void setBasic_info(List<BasicInfoData> basic_info) {
         this.basic_info = basic_info;
+    }
+
+    public List<SliderPhotoData> getMedia() {
+        return media;
+    }
+
+    public void setMedia(List<SliderPhotoData> media) {
+        this.media = media;
+    }
+
+    public LocationData getLocation() {
+        return location;
+    }
+
+    public void setLocation(LocationData location) {
+        this.location = location;
     }
 
     public List<SliderPhotoData> getPhotos() {

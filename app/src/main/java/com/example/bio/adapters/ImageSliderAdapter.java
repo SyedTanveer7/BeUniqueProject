@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.VideoView;
 
 import com.example.bio.modals.SliderPhotoData;
 import com.example.splashactivity.R;
@@ -35,11 +36,19 @@ public class ImageSliderAdapter extends
     @Override
     public void onBindViewHolder(SliderAdapterVH viewHolder, int position) {
 
-
-        if (photos.get(position).getFilename() != null && !photos.get(position).getFilename().isEmpty()) {
-            Picasso.get().load(photos.get(position).getFilename()).into(viewHolder.image);
+        if (photos.get(position).isIs_video()) {
+            viewHolder.image.setVisibility(View.INVISIBLE);
+            viewHolder.videoView.setVisibility(View.VISIBLE);
+            viewHolder.videoView.setVideoPath(photos.get(position).getVideo());
+            viewHolder.videoView.requestFocus();
+            viewHolder.videoView.start();
+        } else {
+            if (photos.get(position).getFilename() != null && !photos.get(position).getFilename().isEmpty()) {
+                Picasso.get().load(photos.get(position).getFilename()).into(viewHolder.image);
+            }
+            viewHolder.image.setVisibility(View.VISIBLE);
+            viewHolder.videoView.setVisibility(View.INVISIBLE);
         }
-
 
     }
 
@@ -50,11 +59,13 @@ public class ImageSliderAdapter extends
 
     class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
         ImageView image;
+        VideoView videoView;
 
 
         public SliderAdapterVH(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.iv_slider);
+            videoView = itemView.findViewById(R.id.VideoView);
         }
     }
 

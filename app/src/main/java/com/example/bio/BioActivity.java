@@ -3,6 +3,7 @@ package com.example.bio;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,10 +13,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.bio.adapters.ImageSliderAdapter;
+import com.example.bio.adapters.InstagramPhotoAdapter;
 import com.example.bio.adapters.PersonalInfoAdapter;
 import com.example.bio.modals.ProfileModal;
 import com.example.bio.modals.SliderPhotoData;
 import com.example.bio.repository.BioRepository;
+import com.example.helpers.AppConstants;
 import com.example.network.response_models.ProfileResponse;
 import com.example.splashactivity.R;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
@@ -28,7 +31,7 @@ public class BioActivity extends AppCompatActivity {
 
     private BioRepository bioRepository;
     private TextView txtTitle, txtDesc, txtName, txtGender, txtAge, txtLocation;
-    private RecyclerView recyclerViewBasicInfo;
+    private RecyclerView recyclerViewBasicInfo,recyclerViewInstagramPosts;
     private SliderView profileSliderView;
     private ProgressDialog progressDialog;
 
@@ -60,6 +63,7 @@ public class BioActivity extends AppCompatActivity {
         txtLocation = findViewById(R.id.textView13);
         profileSliderView = findViewById(R.id.imageSlider);
         recyclerViewBasicInfo = findViewById(R.id.recyclerview);
+        recyclerViewInstagramPosts = findViewById(R.id.recyclerView);
     }
 
 
@@ -87,7 +91,7 @@ public class BioActivity extends AppCompatActivity {
         txtDesc.setText(profile.getProfile().getBio());
         txtAge.setText(String.valueOf(profile.getProfile().getAge()));
         txtGender.setText(profile.getProfile().getGender());
-        txtLocation.setText(profile.getProfile().getName());
+        txtLocation.setText(AppConstants.getAddress(this,profile.getProfile().getLocation().getCoordinates().get(0),profile.getProfile().getLocation().getCoordinates().get(1)));
 
         PersonalInfoAdapter adapter = new PersonalInfoAdapter(this, profile.getProfile().getBasic_info());
         recyclerViewBasicInfo.setLayoutManager(new LinearLayoutManager(this));
@@ -95,7 +99,13 @@ public class BioActivity extends AppCompatActivity {
         recyclerViewBasicInfo.setHasFixedSize(true);
         recyclerViewBasicInfo.setAdapter(adapter);
 
-        bindSliderImages(profile.getProfile().getPhotos());
+        InstagramPhotoAdapter instagramPhotoAdapter = new InstagramPhotoAdapter(this, profile.getProfile().getPhotos());
+        recyclerViewInstagramPosts.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerViewInstagramPosts.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewInstagramPosts.setHasFixedSize(true);
+        recyclerViewInstagramPosts.setAdapter(instagramPhotoAdapter);
+
+        bindSliderImages(profile.getProfile().getMedia());
 
     }
 
@@ -108,7 +118,7 @@ public class BioActivity extends AppCompatActivity {
 
         profileSliderView.setSliderAdapter(new ImageSliderAdapter(photos, this));
 
-        profileSliderView.startAutoCycle();
+//        profileSliderView.startAutoCycle();
     }
 
 }
