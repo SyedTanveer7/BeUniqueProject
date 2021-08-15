@@ -1,0 +1,30 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+ >
+  <group android:scaleX="0.48979592"
+      android:scaleY="0.48979592">
+    <path
+        android:pathData="M24.5,24.5m-24.5,0a24.5,24.5 0,1 1,49 0a24.5,24.5 0,1 1,-49 0"
+        android:strokeAlpha="0.9"
+        android:fillAlpha="0.9">
+      <aapt:attr name="android:fillColor">
+        <gradient 
+            android:startY="-1.1931695E-15"
+            android:startX="24.5"
+            android:endY="49"
+            android:endX="24.5"
+            android:type="linear">
+          <item android:offset="0" android:color="#FF042093"/>
+          <item android:offset="1" android:color="#520032FF"/>
+        </gradient>
+      </aapt:attr>
+    </path>
+    <path
+        android:pathData="M33.4,15L31.1,15a1.606,1.606 0,0 0,-1.6 1.6L29.5,16.94A21.319,21.319 0,0 0,19.847 15L18.38,15A4.343,4.343 0,0 0,14.09 18.613L13.063,24.572a4.353,4.353 0,0 0,4.29 5.095L21.511,29.667a8.552,8.552 0,0 0,-0.519 2.979C20.992,36.09 22.941,37 23.971,37c1.9,0 2.062,-1.775 2.062,-3.437 0,-2.029 2.276,-3.716 3.478,-4.466A1.6,1.6 0,0 0,31.1 30.583L33.4,30.583a1.606,1.606 0,0 0,1.6 -1.6L35,16.6A1.606,1.606 0,0 0,33.4 15ZM24.659,33.562c0,2.062 -0.349,2.062 -0.687,2.062 -0.645,0 -1.6,-0.794 -1.6,-2.979a6.509,6.509 0,0 1,0.8 -3.285A0.688,0.688 0,0 0,22.6 28.292L17.353,28.292A2.977,2.977 0,0 1,14.419 24.806L15.446,18.848A2.97,2.97 0,0 1,18.38 16.375L19.846,16.375c6.236,0 9.36,1.951 9.653,2.144v8.992C28.736,27.917 24.659,30.236 24.659,33.562ZM33.625,28.979a0.229,0.229 0,0 1,-0.229 0.229L31.1,29.208a0.229,0.229 0,0 1,-0.229 -0.229L30.871,16.6a0.232,0.232 0,0 1,0.229 -0.229L33.4,16.371a0.229,0.229 0,0 1,0.229 0.229Z"
+        android:fillColor="#fff"/>
+  </group>
+</vector>
