@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.bio.adapters.ImageSliderAdapter;
@@ -31,9 +32,9 @@ public class BioActivity extends AppCompatActivity {
 
     private BioRepository bioRepository;
     private TextView txtTitle, txtDesc, txtName, txtGender, txtAge, txtLocation;
-    private RecyclerView recyclerViewBasicInfo,recyclerViewInstagramPosts;
+    private RecyclerView recyclerViewBasicInfo, recyclerViewInstagramPosts;
     private SliderView profileSliderView;
-    private ProgressDialog progressDialog;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class BioActivity extends AppCompatActivity {
         txtName = findViewById(R.id.textView7);
         txtGender = findViewById(R.id.textView11);
         txtLocation = findViewById(R.id.textView13);
+        progressBar = findViewById(R.id.progressBar);
         profileSliderView = findViewById(R.id.imageSlider);
         recyclerViewBasicInfo = findViewById(R.id.recyclerview);
         recyclerViewInstagramPosts = findViewById(R.id.recyclerView);
@@ -68,7 +70,7 @@ public class BioActivity extends AppCompatActivity {
 
 
     private void getProfileData() {
-
+        progressBar.setVisibility(View.VISIBLE);
         bioRepository.getProfile().observe(this, new Observer<ProfileResponse>() {
             @Override
             public void onChanged(ProfileResponse profileResponse) {
@@ -77,8 +79,7 @@ public class BioActivity extends AppCompatActivity {
 
                     bindData(profileResponse.getProfile());
                 }
-
-
+                progressBar.setVisibility(View.GONE);
 
             }
         });
@@ -91,7 +92,7 @@ public class BioActivity extends AppCompatActivity {
         txtDesc.setText(profile.getProfile().getBio());
         txtAge.setText(String.valueOf(profile.getProfile().getAge()));
         txtGender.setText(profile.getProfile().getGender());
-        txtLocation.setText(AppConstants.getAddress(this,profile.getProfile().getLocation().getCoordinates().get(0),profile.getProfile().getLocation().getCoordinates().get(1)));
+        txtLocation.setText(AppConstants.getAddress(this, profile.getProfile().getLocation().getCoordinates().get(0), profile.getProfile().getLocation().getCoordinates().get(1)));
 
         PersonalInfoAdapter adapter = new PersonalInfoAdapter(this, profile.getProfile().getBasic_info());
         recyclerViewBasicInfo.setLayoutManager(new LinearLayoutManager(this));

@@ -13,6 +13,18 @@
         android:layout_height="match_parent">
 
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:indeterminateTint="@color/colorWhite"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.smarteist.autoimageslider.SliderView
             android:id="@+id/imageSlider"
             android:layout_width="0dp"
@@ -34,7 +46,9 @@
             app:sliderIndicatorSelectedColor="@color/colorWhite"
             app:sliderIndicatorUnselectedColor="@color/colorGray"
             app:sliderScrollTimeInSec="3"
-            app:sliderStartAutoCycle="true" />
+            app:sliderStartAutoCycle="false" >
+
+        </com.smarteist.autoimageslider.SliderView>
 
 
         <TextView
